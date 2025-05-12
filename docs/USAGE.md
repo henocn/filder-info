@@ -1,8 +1,3 @@
----
-
-### **`USAGE.md`**
-
-```markdown
 # Usage Guide for filder-info
 
 ## Command Overview
@@ -45,18 +40,10 @@ filder-info file /path/to/file [options]
 
 * `--extra` : Show extra metadata, including permissions and ownership.
 * `--human` : Human format with tab.
+* `--json` : Output the analysis results in JSON format.
 
 ### Example:
 
 ```bash
 filder-info file /path/to/file --human --extra
 ```
-
-## Output Formats:
-
-* **Human-readable**: Default output with easy-to-read formatting and colors.
-* **JSON**: Provides raw data for further processing or integration with other tools.
-
-For more information, refer to `COMMANDS.md` for a full list of available commands and options.
-
-````
