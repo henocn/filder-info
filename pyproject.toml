@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "filder-info"
-version = "0.1.0"
+version = "0.1.1"
 description = "A CLI tool to analyze files and folders with metadata, structure, and statistics."
 authors = [
-  { name="Your Name", email="your.email@example.com" }
+  { name="Henoc N'GASAMA", email="ngasamah@gmail.com" }
 ]
 license = { text = "MIT" }
 readme = "README.md"
