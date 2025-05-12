@@ -43,4 +43,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ---
 
-[![TestPyPI](https://img.shields.io/pypi/v/filder-info?registry_uri=https://test.pypi.org/simple/)](https://test.pypi.org/project/filder-info/)
+[![TestPyPI](https://img.shields.io/pypi/v/filder-info?registry_uri=https://test.pypi.org/simple/)](https://test.pypi.org/project/filder-info/1.1.2/)
