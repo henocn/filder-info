@@ -3,6 +3,13 @@ import json
 from datetime import datetime
 from collections import defaultdict, Counter
 
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich.text import Text
+
+console = Console()
+
 def format_size(size, human=False):
     if not human:
         return f"{size} octets"
@@ -99,7 +106,7 @@ def collect_folder_data(path, human=False, details=False, by_ext=False, inventai
 
 def run(args):
     if not os.path.isdir(args.path):
-        print("Dossier introuvable")
+        console.print(f"[bold red]Erreur : le dossier '{args.path}' est introuvable.[/bold red]")
         return
 
     info = collect_folder_data(
@@ -114,31 +121,48 @@ def run(args):
         print(json.dumps(info, indent=2, ensure_ascii=False))
         return
 
-    print(f"Chemin absolu : {info['path']}")
-    print(f"Taille totale : {info['total_size']}")
-    print(f"Nombre de fichiers : {info['file_count']}")
-    print(f"Nombre de dossiers : {info['folder_count']}")
-    print(f"Créé le : {info['created']}")
-    print(f"Dernière modification : {info['modified']}")
+    console.print(Panel.fit(f"[bold cyan]Analyse du dossier :[/bold cyan] {info['path']}", title="Dossier"))
+
+    console.print(f"[bold yellow]Taille totale[/bold yellow] : {info['total_size']}")
+    console.print(f"[bold green]Fichiers[/bold green] : {info['file_count']}")
+    console.print(f"[bold blue]Dossiers[/bold blue] : {info['folder_count']}")
+    console.print(f"Créé le : [magenta]{info['created']}[/magenta]")
+    console.print(f"Modifié le : [magenta]{info['modified']}[/magenta]")
 
     if args.ext and "extensions" in info:
-        print("\nRésumé par extension :")
+        table = Table(title="Fichiers par extension", show_lines=True)
+        table.add_column("Extension", style="cyan", justify="center")
+        table.add_column("Nombre", style="green", justify="right")
         for ext, count in info["extensions"].items():
-            print(f"  {ext} : {count} fichiers")
+            table.add_row(ext, str(count))
+        console.print(table)
 
     if args.details:
-        print("\nFichiers :")
+        table = Table(title="Détail des fichiers", show_lines=True)
+        table.add_column("Nom", style="white")
+        table.add_column("Chemin", style="dim")
+        table.add_column("Taille", justify="right", style="yellow")
         for f in info["files"]:
-            print(f"  {f['path']} ({f['size']})")
+            table.add_row(f["name"], f["path"], f["size"])
+        console.print(table)
 
     if args.inventaire and "inventaire" in info:
         inv = info["inventaire"]
-        print("\nInventaire par extension :")
+
+        table = Table(title="Inventaire par extension", show_lines=True)
+        table.add_column("Extension", style="cyan")
+        table.add_column("Nombre", style="green", justify="right")
+        table.add_column("Proportion", justify="right")
+        table.add_column("Taille totale", justify="right", style="yellow")
         for ext, meta in inv["par_extension"].items():
-            print(f"  {ext} : {meta['nombre']} fichiers ({meta['proportion']}, {meta['taille']})")
+            table.add_row(ext, str(meta["nombre"]), meta["proportion"], meta["taille"])
+        console.print(table)
 
-        print("\nRépartition par taille :")
+        table2 = Table(title="Répartition par taille", show_lines=True)
+        table2.add_column("Classe", style="cyan")
+        table2.add_column("Nombre de fichiers", style="green", justify="right")
         for cls, val in inv["par_taille"].items():
-            print(f"  {cls} : {val} fichiers")
+            table2.add_row(cls, str(val))
+        console.print(table2)
 
-        print(f"\nProfondeur maximale : {inv['profondeur_max']}")
+        console.print(f"[bold cyan]🔎 Profondeur maximale du dossier :[/bold cyan] {inv['profondeur_max']}")
