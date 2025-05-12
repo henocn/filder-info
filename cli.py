@@ -11,6 +11,10 @@ def main():
 
     folder_parser = subparsers.add_parser("folder", help="Analyser un dossier")
     folder_parser.add_argument("path", help="Chemin du dossier")
+    folder_parser.add_argument("--details", action="store_true", help="Lister les fichiers avec leur taille")
+    folder_parser.add_argument("--json", action="store_true", help="Afficher la sortie en JSON")
+    folder_parser.add_argument("--human", action="store_true", help="Afficher les tailles dans un format lisible")
+    folder_parser.add_argument("--ext", action="store_true", help="Afficher le résumé des extensions de fichiers")
     folder_parser.set_defaults(func=folder_analyze.run)
 
     args = parser.parse_args()
