@@ -6,7 +6,10 @@ def main():
     subparsers = parser.add_subparsers(dest="command")
 
     file_parser = subparsers.add_parser("file", help="Analyser un fichier")
-    file_parser.add_argument("path", help="Chemin du fichier")
+    file_parser.add_argument("path", help="Chemin vers le fichier")
+    file_parser.add_argument("--human", action="store_true", help="Afficher les tailles lisibles")
+    file_parser.add_argument("--extra", action="store_true", help="Afficher des métadonnées supplémentaires")
+    file_parser.add_argument("--json", action="store_true", help="Sortie au format JSON")
     file_parser.set_defaults(func=file_analyze.run)
 
     folder_parser = subparsers.add_parser("folder", help="Analyser un dossier")
