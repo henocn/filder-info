@@ -1,8 +1,3 @@
----
-
-### **`README.md`**
-
-````markdown
 # filder-info
 
 `filder-info` is a command-line tool designed to analyze and extract metadata from files and folders. With a range of features, it provides detailed reports, customizable filters, and statistics.
@@ -20,7 +15,7 @@
 To install `filder-info`, use pip:
 
 ```bash
-pip install filder-info
+pip install -i https://test.pypi.org/simple/ filder-info
 ````
 
 ## Usage
@@ -53,5 +48,3 @@ We welcome contributions! Feel free to fork this repository and submit pull requ
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
-
-````

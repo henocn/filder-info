@@ -15,15 +15,15 @@ It is particularly useful for developers, sysadmins, or anyone needing to extrac
 ## Installation
 
 ```bash
-pip install filder-info
+pip install -i https://test.pypi.org/simple/ filder-info
 ```
 
 ## Usage
 
 ```bash
-filder-info folder /path/to/folder --human --inventory
+filder-info folder /path/to/folder --human --inventaire --ext
+filder-info folder /path/to/folder --json --inventaire --ext
 filder-info file /path/to/file --extra
-filder-info file /path/to/file --timestamps
 ```
 
 ## Requirements
@@ -43,4 +43,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ---
 
-[![PyPI](https://img.shields.io/pypi/v/filder-info)](https://pypi.org/project/filder-info)
+[![TestPyPI](https://img.shields.io/pypi/v/filder-info?registry_uri=https://test.pypi.org/simple/)](https://test.pypi.org/project/filder-info/1.1.2/)
