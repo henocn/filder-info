@@ -1,1 +1,30 @@
- 
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "filder-info"
+version = "0.1.0"
+description = "A CLI tool to analyze files and folders with metadata, structure, and statistics."
+authors = [
+  { name="Your Name", email="your.email@example.com" }
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["cli", "filesystem", "file analysis", "folder stats", "file metadata"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: System :: Filesystems",
+    "Topic :: Utilities"
+]
+
+dependencies = [
+    "rich>=13.0.0"
+]
+
+[project.scripts]
+filder-info = "filder_info.cli:main"
