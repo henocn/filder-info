@@ -1,4 +1,4 @@
-filder-info
+ #filder-info
 
 > A powerful command-line tool for analyzing files and folders with detailed reporting, custom filters, and advanced statistics.
 
